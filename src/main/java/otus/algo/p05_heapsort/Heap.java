@@ -1,5 +1,6 @@
 package otus.algo.p05_heapsort;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Heap<T extends Comparable<T>> {
@@ -14,7 +15,7 @@ public class Heap<T extends Comparable<T>> {
         int size = objects.size();
         while (size > 1) {
             --size;
-            swap(objects, 0, size);
+            Collections.swap(objects, 0, size);
             drown(0, size);
         }
         return objects;
@@ -70,22 +71,16 @@ public class Heap<T extends Comparable<T>> {
             if (max == i) {
                 break;
             }
-            swap(objects, max, i);
+            Collections.swap(objects, max, i);
             i = max;
         }
     }
 
     private void raise(int i) {
         while (i > 0 && objects.get(i).compareTo(objects.get(parent(i))) > 0) {
-            swap(objects, i, parent(i));
+            Collections.swap(objects, i, parent(i));
             i = parent(i);
         }
-    }
-
-    private static <T> void swap(List<T> objects, int i1, int i2) {
-        T current = objects.get(i1);
-        objects.set(i1, objects.get(i2));
-        objects.set(i2, current);
     }
 
     private static int parent(int i) {
