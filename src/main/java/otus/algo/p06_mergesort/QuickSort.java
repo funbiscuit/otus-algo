@@ -24,11 +24,14 @@ public class QuickSort {
 
     public static <T extends Comparable<T>>
     int partition(List<T> list, int begin, int end) {
-
-        int i = begin - 1;
         // extra randomization
+        return partitionWith(list, begin, end, r.nextInt(end - begin) + begin);
+    }
 
-        Collections.swap(list, r.nextInt(end - begin) + begin, end - 1);
+    public static <T extends Comparable<T>>
+    int partitionWith(List<T> list, int begin, int end, int pivotIndex) {
+        int i = begin - 1;
+        Collections.swap(list, pivotIndex, end - 1);
         T pivot = list.get(end - 1);
         for (int j = begin; j < end - 1; j++) {
             if (list.get(j).compareTo(pivot) < 0) {
